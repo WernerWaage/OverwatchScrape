@@ -1,2 +1,2 @@
 # OverwatchScrape
-Python Overwatch Profile Scraper
+Overwatch Profile Scraper - Written in python
