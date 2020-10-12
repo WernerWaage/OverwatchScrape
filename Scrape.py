@@ -22,7 +22,7 @@ vGroup = 			'Werner'
 vJSON = 			''
 vUsername = 		'Werner'
 vPassword = 		''
-vSeason = '14'
+vSeason = '23'
 now = datetime.datetime.now()
 vLocation = 'EU'
 vDraw = '0'
@@ -30,6 +30,7 @@ vLost = '0'
 vPlayed = '0'
 vWon = '0'
 vTime = '0'
+countRole = 0
 
 raw_html = simple_get(vProfileLink)
 if raw_html is None :
@@ -46,8 +47,22 @@ for data in soup.findAll('h1',{'class':'header-masthead'}):
    print(vName)
 
 for data in soup.findAll('div',{'class':'competitive-rank'})[0]:
-    vSkillrating = data.text
-    print(vSkillrating + " skillrating")
+    countRole += 1
+    if countRole == 1 :
+        vSkillrating = data.text
+    elif countRole == 2 :
+        ratingDps = data.text
+    elif countRole == 3 :
+        ratingDps = data.text
+    else:
+        ratingSupport = data.text
+
+
+    countRole += 1
+
+print(vSkillrating + " Tank Rating")
+print(ratingDps + " DPS Rating")
+print(ratingSupport + " Support Rating")
 
 newsoup = soup.find("div", {"id": "competitive"})
 for data in newsoup.findAll('tr',{'data-stat-id':'0x086000000000042E'}):
